@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dream Bucket List</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f4f8;
+            color: #333;
+        }
+
+        .bucket-list-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #eef2f7;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        li.completed {
+            background: #d4f8e8;
+            color: #2e7d32;
+        }
+
+        li.pending {
+            background: #ffe3e3;
+            color: #c62828;
+        }
+
+        li:hover {
+            background: #dfe9f3;
+            transform: translateY(-3px);
+            cursor: pointer;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #217dbb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            li {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bucket-list-container">
+        <h1>My Dream Bucket List</h1>
+        <ul id="bucketList">
+            <li class="pending">Go on Adventures <span class="icon">✨</span></li>
+            <li class="pending">Learn to surf <span class="icon">🏄‍♂️</span></li>
+            <li class="pending">Publish a Article <span class="icon">📖</span></li>
+            <li class="pending">Travel to all continents <span class="icon">✈️</span></li>
+            <li class="pending">visit Thailand <span class="icon">😎</span></li>
+            <li class="pending">Capture the Northern Lights <span class="icon">🌌</span></li>
+            <li class="pending">Go skydiving <span class="icon">🪂</span></li>
+            <li class="pending">Run a marathon <span class="icon">🏃‍♂️</span></li>
+            <li class="pending">Master cooking skills <span class="icon">👨‍🍳</span></li>
+            <li class="pending">Road trip across the USA <span class="icon">🚗</span></li>
+        </ul>
+        <button id="toggleButton">Mark All Completed</button>
+    </div>
+
+    <script>
+        const bucketList = document.querySelectorAll('#bucketList li');
+        const toggleButton = document.getElementById('toggleButton');
+        let allCompleted = false;
+
+        toggleButton.addEventListener('click', () => {
+            allCompleted = !allCompleted;
+            bucketList.forEach(item => {
+                item.classList.remove(allCompleted ? 'pending' : 'completed');
+                item.classList.add(allCompleted ? 'completed' : 'pending');
+            });
+            toggleButton.textContent = allCompleted ? 'Mark All Pending' : 'Mark All Completed';
+        });
+
+        bucketList.forEach(item => {
+            item.addEventListener('click', () => {
+                if (item.classList.contains('pending')) {
+                    item.classList.remove('pending');
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                    item.classList.add('pending');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
